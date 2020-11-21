@@ -6,10 +6,11 @@ This repository is the keycloak server repository used for the authentication an
 
 For steps on how you can contribute, please follow the [Contributing guide](https://github.com/JJCSA/backend/blob/developer/CONTRIBUTING.md)
 
-###Steps to start the server
+### Steps to start the server
 1. To start the server clone this repository into your machine
-2. Navigate to keycloak/bin and run ./standalone.sh command
-3. Once the server starts without any issues navigate to http://localhost:8080/auth. To login use credentials mentioned below 
+2. Make sure you have a postgres instance running with `keycloak` database created
+3. Navigate to keycloak/bin and run ./standalone.sh command
+4. Once the server starts without any issues navigate to http://localhost:8080/auth. To login use credentials mentioned below 
 ````
 username: admin
 password: password
