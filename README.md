@@ -8,7 +8,7 @@ For steps on how you can contribute, please follow the [Contributing guide](http
 
 ### Steps to start the server
 1. To start the server clone this repository into your machine
-2. Make sure you have a postgres instance running with `keycloak` database created
+2. Make sure you have a postgres instance running with `keycloak` database created.  
     If not, create the same with the following steps:
     ```
     sudo -u postgres psql
