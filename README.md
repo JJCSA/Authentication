@@ -58,6 +58,12 @@ If you would like to reset your entire configuration for keycloak, you can clear
     docker cp <KEYCLOAK_CONTAINER_ID>:/tmp/my_realm.json ~/Desktop
     ```
 
+## Credentials
+The default config will create the following users:
+- User: username: user, password: user, role: USER
+- Admin: username: admin, password: admin, role: ADMIN
+- Super-admin: username: super-admin, password: super-admin, role: SUPER_ADMIN
+
 ## References:
 - https://hub.docker.com/r/jboss/keycloak
 - https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import
