@@ -423,7 +423,7 @@
     "requiredActions" : [ ],
     "realmRoles" : [ "default-roles-jjcsa-services" ],
     "clientRoles" : {
-      "realm-management" : [ "manage-users" ],
+      "realm-management" : [ "realm-admin" ],
       "jjcsa" : [ "ADMIN" ]
     },
     "notBefore" : 0,
