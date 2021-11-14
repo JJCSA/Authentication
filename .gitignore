@@ -1,0 +1,9 @@
+# Logs
+*.log
+
+
+.DS_Store
+
+### AWS ###
+*.sh
+### AWS ###
