@@ -14,7 +14,7 @@ services:
         POSTGRES_USER: keycloak
         POSTGRES_PASSWORD: password
   keycloak:
-      image: jboss/keycloak:13.0.1
+      image: wizzn/keycloak:14
       volumes: 
         - type: bind
           source: ./jjcsa-realm.json
