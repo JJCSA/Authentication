@@ -5,14 +5,16 @@ volumes:
       driver: local
 
 services:
-  postgres:
-      image: postgres
-      volumes:
-        - postgres_data:/var/lib/postgresql/data
-      environment:
-        POSTGRES_DB: keycloak
-        POSTGRES_USER: keycloak
-        POSTGRES_PASSWORD: password
+  postgres-keycloak:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5431:5432
   keycloak:
       image: wizzn/keycloak:14
       volumes: 
@@ -20,18 +22,40 @@ services:
           source: ./jjcsa-realm.json
           target: /tmp/jjcsa-realm.json
       environment:
-        DB_VENDOR: POSTGRES
-        DB_ADDR: postgres
-        DB_DATABASE: keycloak
-        DB_USER: keycloak
-        DB_SCHEMA: public
-        DB_PASSWORD: password
-        KEYCLOAK_USER: admin
-        KEYCLOAK_PASSWORD: password
-        KEYCLOAK_IMPORT: /tmp/jjcsa-realm.json
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres-keycloak
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_SCHEMA: public
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
+      KEYCLOAK_IMPORT: /tmp/jjcsa-realm.json
         # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
         #JDBC_PARAMS: "ssl=true"
       ports:
         - 8080:8080
       depends_on:
-        - postgres
+        - postgres-keycloak
+
+  postgres-backend:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: jjcsa
+      POSTGRES_USER: admin
+      POSTGRES_DB: jjcsa
+    depends_on:
+      - keycloak
+
+  backend:
+    image: dushyant8858/jjcsa-backend:latest
+    ports:
+      - "9080:9080"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=local,docker"
+    depends_on:
+      - postgres-backend
