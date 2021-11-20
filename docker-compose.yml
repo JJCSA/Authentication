@@ -16,7 +16,8 @@ services:
     ports:
       - 5431:5432
   keycloak:
-    image: wizzn/keycloak:14
+    # image: wizzn/keycloak:14
+    image: quay.io/keycloak/keycloak:13.0.1
     volumes: 
       - type: bind
         source: ./jjcsa-realm.json
@@ -36,6 +37,12 @@ services:
       # JDBC_PARAMS: "ssl=true"
     ports:
       - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://keycloak"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     depends_on:
       - postgres-keycloak
 
