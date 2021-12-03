@@ -1,6 +1,11 @@
 # JJCAuthentication - Keycloak
 
-The keycloak server is configured in the docker-compose file. The docker-compose file contains postgres and keycloak containers.  
+The keycloak server is configured in the docker-compose file. The docker-compose file contains 4 containers:
+1) postgres-keycloak
+2) keycloak
+3) postgres-backend
+4) backend
+
 The `jjcsa-services` realm is configured in the [jjcsa-realm.json](jjcsa-realm.json) file.  
 When docker starts the keycloak container, it loads this realm configuration.
 
@@ -9,22 +14,50 @@ When docker starts the keycloak container, it loads this realm configuration.
 1. Ensure you have docker-compose installed in your machine.  
     (if not you can install it from https://docs.docker.com/compose/install/).
 
-1. Start keycloak:
+2. Start Keycloak and backed together in one go
+   **NOTE:** **Make sure you are in Authentication GitHub's directory as it contains required docker-compose.yaml file**:
     ```commandline
     docker-compose up
     ```
 
-1. Keycloak should start running on port 8080 and the admin console can be accessed at `http://localhost:8080/auth`.  
+3. Keycloak should start running on port 8080 and the admin console can be accessed at `http://localhost:8080/auth`.  
     Login using `admin/password`
 
-1. Stop keycloak:
+4. Stop all containers:
     ```commandline
     docker-compose down
     ```
 
+5. When you try generating a token from Keycloak using the `URL: http://localhost:8080/auth` to access backend, issue is generated token is only vaid if the requester requests the access uing `http://localhost:8080/auth`.
+However this localhost URL is not accessible from inside the backend container. 
+To resolve this issue we need to have a host in the `/etc/hosts` directory:
+   a. FOR MAC: Get your local machine IP address using below command:
+    ```
+    ipconfig getifaddr en1
+    ```
+   b. Update the hosts file:
+    ```commandline
+    sudo vi /etc/hosts
+    ```
+    Add following entry:
+    ```
+    <Local-Machine's-IP> keycloak
+    ```
+    Sample should look something like this 
+    ```
+    192.168.1.210 keycloak
+    ```
+
+6. Now you can access 
+    a. Keycloak at: http://keycloak:8080/auth
+    b. Backend at: http://localhost:9080/actuator/health
+
+
+
+
 ## Cleanup
 
-If you would like to reset your entire configuration for keycloak, you can clear everything and start afresh
+If you would like to reset your entire configuration for keycloak, you can clear everything and start fresh:
 
 1. Stop the containers
     ```commandline
