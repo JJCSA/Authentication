@@ -49,8 +49,8 @@ To resolve this issue we need to have a host in the `/etc/hosts` directory:
     ```
 
 6. Now you can access 
-    a. Keycloak at: http://keycloak:8080/auth
-    b. Backend at: http://localhost:9080/actuator/health
+    - Keycloak at: http://keycloak:8080/auth
+    - Backend at: http://localhost:9080/actuator/health
 
 
 
