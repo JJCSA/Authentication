@@ -55,7 +55,7 @@ To resolve this issue we need to have a host in the `/etc/hosts` directory:
 
 
 
-## Cleanup
+## Cleanup <It is PENDING>
 
 If you would like to reset your entire configuration for keycloak, you can clear everything and start fresh:
 
