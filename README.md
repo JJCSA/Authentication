@@ -31,11 +31,13 @@ When docker starts the keycloak container, it loads this realm configuration.
 5. When you try generating a token from Keycloak using the `URL: http://localhost:8080/auth` to access backend, issue is generated token is only vaid if the requester requests the access uing `http://localhost:8080/auth`.
 However this localhost URL is not accessible from inside the backend container. 
 To resolve this issue we need to have a host in the `/etc/hosts` directory:
-   - FOR MAC: Get your local machine IP address using below command:
+
+   a. FOR MAC: Get your local machine IP address using below command:
     ```
     ipconfig getifaddr en1
     ```
-   - Update the hosts file:
+    
+   b. Update the hosts file:
     ```commandline
     sudo vi /etc/hosts
     ```
