@@ -25,7 +25,7 @@ When docker starts the keycloak container, it loads this realm configuration.
 
 4. Stop all containers:
     ```commandline
-       docker-compose down && docker-compose pull && docker-compose up -d
+    docker-compose down && docker-compose pull && docker-compose up -d
     ```
 
 5. When you try generating a token from Keycloak using the `URL: http://localhost:8080/auth` to access backend, issue is generated token is only vaid if the requester requests the access uing `http://localhost:8080/auth`.
