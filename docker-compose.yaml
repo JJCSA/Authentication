@@ -53,7 +53,7 @@ services:
       - keycloak
 
   backend:
-    image: public.ecr.aws/q0n7y4c1/jjsca-stage-backend-local-docker:latest
+    image: dushyant8858/jjcsa-backend:latest
     ports:
       - 9080:9080
     environment:
