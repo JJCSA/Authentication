@@ -18,6 +18,7 @@ When docker starts the keycloak container, it loads this realm configuration.
    **NOTE:** **Make sure you are in Authentication GitHub's directory as it contains required docker-compose.yaml file**:
     ```commandline
     # For now we are still testing docker-compose so please use branch `AWS-ECS` for now
+
     git checkout AWS-ECS
     docker-compose down && docker-compose pull && docker-compose up -d
     ```
