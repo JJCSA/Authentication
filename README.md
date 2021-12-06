@@ -12,12 +12,14 @@ When docker starts the keycloak container, it loads this realm configuration.
 ## How to start
 
 1. Ensure you have docker-compose installed in your machine.  
-    (if not you can install it from https://docs.docker.com/compose/install/).
+    (If not you can install it from https://docs.docker.com/compose/install/).
 
 2. Start Keycloak and backed together in one go
    **NOTE:** **Make sure you are in Authentication GitHub's directory as it contains required docker-compose.yaml file**:
     ```commandline
-    docker-compose up
+    # For now we are still testing docker-compose so please use branch `AWS-ECS` for now
+    git checkout AWS-ECS
+    docker-compose down && docker-compose pull && docker-compose up -d
     ```
 
 3. Keycloak should start running on port 8080 and the admin console can be accessed at `http://localhost:8080/auth`.  
@@ -25,7 +27,7 @@ When docker starts the keycloak container, it loads this realm configuration.
 
 4. Stop all containers:
     ```commandline
-    docker-compose down && docker-compose pull && docker-compose up -d
+    docker-compose down
     ```
 
 5. When you try generating a token from Keycloak using the `URL: http://localhost:8080/auth` to access backend, issue is generated token is only vaid if the requester requests the access uing `http://localhost:8080/auth`.
