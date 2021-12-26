@@ -1,7 +1,7 @@
 # Logs
 *.log
 
-
+.idea/
 .DS_Store
 
 ### AWS ###
